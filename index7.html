@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html ng-app="app">
+    <head>
+        <title>Anasayfa</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit-no">
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <script src="C:\Users\pc\Desktop\denemeler\JS\index2.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js" integrity="sha512-NWNl2ZLgVBoi6lTcMsHgCQyrZVFnSmcaa3zRv0L3aoGXshwoxkGs3esa9zwQHsChGRL4aLDnJjJJeP6MjPX46Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script> 
+        <script src="C:\Users\pc\Desktop\denemeler\node_modules\angular\angular.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js" integrity="sha512-7oYXeK0OxTFxndh0erL8FsjGvrl2VMDor6fVqzlLGfwOQQqTbYsGPv4ZZ15QHfSk80doyaM0ZJdvkyDcVO7KFA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <style>
+            @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css";
+            #bar-menu{
+                background-color: #031321;
+                width: 100%;
+                height: 60px;
+            }
+            #bar-menu > a {
+                color: white;
+                text-decoration: none;
+                font-size: x-large;
+            }
+            #bar-menu > #pc-surum > button {
+                width: 80px;
+                height: 45px;
+                background-color: transparent;
+                border: solid 2px 25%;
+                color: white;
+                cursor: pointer;
+                margin-bottom: -40%;
+                border: none;
+                transition: 0.2s;
+            }
+            #bar-menu > #pc-surum > button:hover {
+                color: white;
+                background: #2196f3;
+                box-shadow: 0 0 0 1px #2196f3, 0 0 4px #2196f3, 0 0 8px #2196f3;
+            }
+            #bar-menu > #pc-surum > #kaydol-btn:hover {
+                color: white;
+                background: #ba27ad;
+                box-shadow: 0 0 0 1px #ba27ad, 0 0 4px #ba27ad, 0 0 8px #ba27ad;
+            }
+            h2 {
+                text-align: center;
+                font-family: Tahoma, Arial, sans-serif;
+                color: #06d85f;
+                margin: 80px 0;
+            }
+            .box {
+                width: 40px;
+                margin: 0 auto;
+                background: rgba(255,255,255, 0.2);
+                padding: 35px;
+                border: 2px solid #fff;
+                border-radius: 20px/50px;
+                background-clip: padding-box;
+                text-align: center;
+            }
+            .button {
+                font-size: 1em;
+                padding: 10px;
+                color: #fff;
+                border: 2px solid #06d85f;
+                border-radius: 20px/50px;
+                text-decoration: none;
+                cursor: pointer;
+                transition: all 0.3s ease-out;
+            }
+            .button:hover {
+                background: #06d85f;
+            }
+            .overlay {
+                position: fixed;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: rgba(0,0,0,0.7);
+                transition: opacity 500ms;
+                visibility: 0;
+            }
+            .overlay:target{
+                visibility: visible;
+                opacity: 1;
+            }
+            .popup {
+                margin: 70px auto;
+                padding: 20px;
+                background: #fff;
+                border-radius: 5px;
+                width: 30%;
+                position: relative;
+                transition: all 5s ease-in-out;
+            }
+            .popup h2 {
+                margin-top: 0;
+                color: #333;
+                font-family: Tohoma, Arial, sans-serif;
+            }
+            .popup .close {
+                position: absolute;
+                top: 20px;
+                right: 30px;
+                transition: all 200ms;
+                font-size: 30px;
+                font-weight: bold;
+                text-decoration: none;
+                color: #333;
+            }
+            .popup .close:hover{
+                color: #06d85f;
+            }
+            .popup .content {
+                max-height: 30%;
+                overflow: auto;
+            }
+            @media screen and (max-width: 700px) {
+                .box {
+                    width: 70%;
+                }
+                .popup{
+                    width: 70%;
+                }
+            }
+            #login-box {
+                margin-top: -20px;
+            }
+            #login-box > #input-box {
+                overflow: hidden;
+                padding: 8px 0;
+                margin: 8px 0;
+                border-bottom: 1px solid #4caf50;
+            }
+            #login-box > #input-box > input {
+                border: none;
+                outline: none;
+                background: none;
+                float: left;
+            }
+            #hamburger-menu {
+                height: 40px;
+                width: 40px;
+                border: solid 3px white;
+                border-radius: 50%;
+                margin-left: 87%;
+                margin-top: -4%;
+                cursor: pointer;
+            }
+            #hamburger-menu > div{
+                height: 3px;
+                background-color: white;
+                width: 25px;
+                border-radius: 15%;
+                margin-top: 5px;
+                margin-left: 15%;
+                transition: 0.3s;
+            }
+            #hamburger-menu > #line-1 {
+                margin-top: 7px;
+            }
+            .toggler-1 {
+                margin-top: 5px;
+                background-color: red;
+                transform: translateY(6px) rotate(45deg);
+            }
+            .toggler-2 {
+                margin-top: 10px;
+                background-color: red;
+                transform: translateY(-1px) rotate(-45deg);
+            }
+            #hamburger-menu:hover{
+                box-shadow: 0 0 0 1px green, 0 0 4px green, 0 0 8px #ba27ad;
+            }
+            #hamburger-menu:hover > div{
+                box-shadow: 0 0 0 1px green, 0 0 4px green, 0 0 8px #ba27ad;
+            }
+            #mobil-menu > #menu {
+                width: 40%;
+                margin-left: 60%;
+                margin-top: 11px;
+                z-index: 0;
+            }
+            #mobil-menu > #menu > .item {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                text-decoration: none;
+                border-top: 1px solid #2980b9;
+                overflow: hidden;
+                z-index: 1;
+            }
+            #mobil-menu > #menu > .item > a {
+                text-decoration: none;
+            }
+            #mobil-menu > #menu > .item > #smenu > a {
+                text-decoration: none;
+            }
+            #mobil-menu > #menu > .item > #btn {
+                display: block;
+                padding: 16px 20px;
+                background-color: #3498db;
+                color: white;
+                position: relative;
+            }
+            #mobil-menu > #menu > .item > #btn:before{
+                content: "";
+                position: absolute;
+                width: 14px;
+                height: 14px;
+                background: #3498db;
+                left: 20px;
+                bottom: -7px;
+                transform: rotate(45deg);
+            }
+            #mobil-menu > #menu > .item > #smenu {
+                background: #333;
+                overflow: hidden;
+                transition: max-height 0.3s;
+                max-height: 0;
+            }
+            #mobil-menu > #menu > .item > #smenu > a {
+                display: block;
+                padding: 16px 26px;
+                color: white;
+                font-size: 14px;
+                margin: 4px 0;
+                position: relative;
+            }
+            #mobil-menu > #menu > .item > #smenu > a:before {
+                content: "";
+                position: absolute;
+                width: 6px;
+                height: 100%;
+                background: #3498db;
+                left: 0;
+                top: 0;
+                transition: 0.3s;
+                opacity: 0;
+            }
+            #mobil-menu > #menu > .item > #smenu > a:hover:before {
+                opacity: 1;
+            }
+            #mobil-menu > #menu > .item:target #smenu {
+                max-height: 10em;
+            }
+            .carousel-one {
+                max-width: 1000px;
+                margin: auto;
+                position: relative;
+                z-index: -1;
+            }
+            .carousel-one .mySlides {
+                display: none;
+            }
+            .carousel-one .mySlides img {
+                width: 100%;
+            }
+            .carousel-one .mySlides .caption-text {
+                color: #fff;
+                font-weight: 900;
+                font-size: 30px;
+                padding: 8px 12px;
+                position: absolute;
+                bottom: 38px;
+                width: 100%;
+                text-align: center;
+            }
+            .carousel-one .mySlides .number-text {
+                color: #f2f2f2;
+                font-size: 12px;
+                padding: 8px 12px;
+                position: absolute;
+                top: 0px;
+            }
+            .carousel-one .fade-In {
+                animation-name: fade;
+                animation-duration: 1.5s;
+            }
+            .dots{
+                text-align: center;
+            }
+            .dot {
+                cursor: pointer;
+                height: 15px;
+                width: 15px;
+                margin: 0px 2px;
+                background-color: #bbb;
+                border-radius: 50%;
+                display: inline-block;
+                transition: background-color 0.6s ease;
+            }
+            .dot:hover {
+                background-color: #717171;
+            }
+            .active {
+                background-color: #717171;
+            }
+            @keyframes fade {
+                from {
+                    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+                    filter: alpha(opacity=40);
+                    opacity: 0.4;
+                }
+                to {
+                    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+                    filter: alpha(opacity=100);
+                    opacity: 1;
+                }
+            }
+            #filtrele {
+                background-color: #3498db;
+                color: white;
+                font-size: 17px;
+                height: auto;
+            }
+            #filter {
+                margin-top: -3%;
+                background-color: #3498db;
+                color: white;
+                font-size: 17px;
+                height: auto;
+            }
+            #filtrele > i {
+                position: absolute;
+                margin-top: -35px;
+                margin-left: 90%;
+                text-align: right;
+                cursor: pointer;
+            }
+            #filtrele > {
+                margin-top: 1%;
+            }
+            #filtrele > #deger-isareti {
+                height: 5px;
+                margin-left: -3px;
+            }
+            #filtrele > #fiyat {
+                height: 28px;
+                -webkit-box-flex: 0;
+                -ms-flex: 0 0 16.666667%;
+                flex: 0 0 16.666667%;
+                max-width: 16.666667%;
+            }
+        </style>
+        
+    </head>
+    <body>
+        <div id="bar-menu">
+            <a class="ml-5" href="http://">WorldLancer</a>
+            <div class="d-none d-md-inline-block mt-2" id="pc-surum" style="margin-left: 70%;">
+                <button class="col-6" onclick="signUp1()">Giriş</button>
+                <button class="col-6 ml-1" id="kaydol-btn">Kaydol</button>
+            </div>
+            <div id="hamburger-menu" class="d-block d-md-none d-none  d-md-none" onclick="transformers()">
+                <div id="line-1"></div>
+                <div id="line-2"></div>
+                <div id="line-3"></div>
+            </div>
+            <div class="d-block d-md-none d-none  d-md-none" id="mobil-menu">
+                <div id="menu">
+                    <li class="item" id="profile">
+                        <a ng-controller="girisControl" href="#profile" id="btn">
+                            <i class="fas fa-user"></i>&nbsp; &nbsp;</i>{{ deger }}</a>
+                        <div id="smenu">
+                            <a href="">Posts</a>
+                            <a href="">Pictures</a>
+                        </div>
+                    </li>
+                    <li class="item" id="message">
+                        <a href="#message" id="btn" >
+                        <i class="fas fa-envelope">&nbsp; &nbsp;</i>Mesajlar</a>
+                        <div id="smenu">
+                            <a href="">Yeni</a>
+                            <a href="">Gelenler</a>
+                            <a href="">Oluştur</a>
+                        </div>
+                    </li>
+                    <li class="item" id="ayarlar">
+                        <a href="#ayarlar" id="btn" >
+                        <i class="fas fa-cog">&nbsp; &nbsp;</i>Ayarlar</a>
+                        <div id="smenu">
+                            <a href="">Mail</a>
+                            <a href="">Şifre</a>
+                        </div>
+                    </li>
+                    <li class="item" id="cikis">
+                        <a href="#cikis" id="btn">
+                        <i class="fas fa-sign-out-alt">&nbsp; &nbsp;</i>Çıkış</a>
+                    </li>
+                </div>
+            </div>
+        </div>
+        <div id="popup1" class="overlay">
+            <div class="popup">
+                <a href="#" class="close" onclick="signUp2()">&times;</a>
+                <h2>Giriş</h2>
+                <div id="login-box">
+                    <div id="input-box">
+                       <i class="fa fa-user" aria-hidden="true" style="float: left; text-align: center;"></i>
+                        <input class="col-10" type="text" id="nickname" placeholder="Kullanıcı Adı veya E-Posta">
+                    </div>
+                    <br>
+                    <div id="input-box">
+                        <i class="fa fa-lock" aria-hidden="true" style="float: left; text-align: center;"></i>
+                        <input class="col-10" type="password" id="password" placeholder="Şifreniz">
+                        <i class="fa fa-eye" aria-hidden="true" onclick="togglePassword()" style="cursor: pointer;"></i>
+                    </div>
+                    <br>
+                    <button class="btn-danger" onclick="stil1()">Giriş</button>
+                    <br>
+                    <a href="http://">Şifrenizi mi unuttunuz?</a>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-one">
+            <div class="mySlides fade-In">
+                <div class="number-text">1/3</div>
+                <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22800%22%20height%3D%22400%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20400%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17b24d83e3e%20text%20%7B%20fill%3A%23555%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A40pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17b24d83e3e%22%3E%3Crect%20width%3D%22800%22%20height%3D%22400%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22285.9140625%22%20y%3D%22217.7%22%3EFirst%20slide%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" />
+                <div class="caption-text">Caption Text1</div>
+            </div>
+            <div class="mySlides fade-In">
+                <div class="number-text">2/3</div>
+                <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22800%22%20height%3D%22400%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20400%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17b26810e15%20text%20%7B%20fill%3A%23444%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A40pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17b26810e15%22%3E%3Crect%20width%3D%22800%22%20height%3D%22400%22%20fill%3D%22%23666%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22247.3125%22%20y%3D%22217.7%22%3ESecond%20slide%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" />
+                <div class="caption-text">Caption Text2</div>
+            </div>
+            <div class="mySlides fade-In">
+                <div class="number-text">3/3</div>
+                <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22800%22%20height%3D%22400%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20400%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17b26810e1b%20text%20%7B%20fill%3A%23333%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A40pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17b26810e1b%22%3E%3Crect%20width%3D%22800%22%20height%3D%22400%22%20fill%3D%22%23555%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22276.9921875%22%20y%3D%22217.7%22%3EThird%20slide%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" />
+                <div class="caption-text">Caption Text3</div>
+            </div>
+        </div>
+        <br />
+        <div class="dots">
+            <span class="dot dot1"></span>
+            <span class="dot dot2"></span>
+            <span class="dot dot3"></span>
+        </div>
+        <br><br><br>
+        <div id="filtrele" class="col-12">
+            <p class="col-9">Açık arttırmada toplamda {{ musteri_is_miktari }} adet {{ cevap }} bulundu...</p><i class="fas fa-sliders-h" id="filtre-sembol" onclick="toggleOpen()"></i>
+        </div>
+        <div id="filter" class="col-12">
+            <br>
+            <h5>{{ cevap }} Filtrele</h5>
+            <select id="kategori" class="col-3">
+                <option value="">Kategori Seç</option>
+                <option value="programlama">Programlama</option>
+                <option value="tasarım">Tasarım</option>
+                <option value="ceviri">Çeviri</option>
+                <option value="yazarlık">Yazarlık</option>
+                <option value="fotoğrafçılık">Fotoğrafçılık</option>
+                <option value="seslendirme">Seslendirme</option>
+            </select>
+            <select name="slct2" id="alt-kategori" class="col-3">
+                <option value="alt-kategori">Alt Kategori</option>
+            </select>
+            <input type="text" class="col-2" id="fiyat" placeholder="Fiyat">
+            <select id="deger-isareti">
+                <option value="buyuktur" id="buyuktur"> > </option>
+                <option value="kucuktur" id="kucuktur"> < </option>
+            </select>
+        </div>
+        <script>
+            var kontrol = false;
+            var app = angular.module("app",[]);
+            if(kontrol == true){
+                app.controller("girisControl", function($scope){
+                    $scope.deger="Giriş";
+                });
+            }
+            else{
+                app.controller("girisControl", function($scope){
+                    $scope.deger="Hesabım";
+                });
+            }
+            var nickname = document.getElementById('nickname');
+            var password = document.getElementById('password');
+            $('#popup1').hide();
+            $('#mobil-menu').hide();
+            $('#menu').hide();
+            function signUp1() {
+                $('#popup1').show();
+            }
+            function signUp2() {
+                $('#popup1').hide();
+            }
+            function togglePassword() {
+                var element = document.getElementById('password');
+                element.type = (element.type == 'password' ? 'text' : 'password');
+            }
+            function stil1 () {
+                var nickname = document.getElementById('nickname');
+                var password = document.getElementById('password');
+                if (nickname == " "){
+                    $('#input-box').css({'border-bottom-color':'1px solid #dc3545'});
+                }
+                else {
+                    $('#input-box').css({'border-bottom' : '1px solid #4caf50'});
+                }
+            }
+            function transformers(){
+                $("#line-1").toggleClass('toggler-1');
+                $("#line-2").toggle();
+                $("#line-3").toggleClass('toggler-2');
+                $('#mobil-menu').toggle();
+                $('#menu').toggle();
+            }
+            var slideIndex = 0;
+            showSlides();
+            function showSlides() {
+                var i;
+                var slides = $(".mySlides");
+                for (var i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                slideIndex++;
+                if (slideIndex > slides.length) {
+                    slideIndex = 1;
+                }
+                slides[slideIndex - 1].style.display = "block";
+                setTimeout(showSlides, 10000); 
+            }
+            $('#filter').hide();
+            function toggleOpen () {
+                $('#filter').toggle(300);
+            }
+        </script>
+    </body>
+</html>
